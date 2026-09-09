@@ -12,6 +12,10 @@ def call(Map config = [:]) {
     def registry = config.registry
 
     sh """
+        mkdir -p "\$WORKSPACE/.docker"
+
+        export DOCKER_CONFIG="\$WORKSPACE/.docker"
+
         aws ecr get-login-password \
             --region ${region} |
         docker login \
