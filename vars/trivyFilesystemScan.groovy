@@ -9,7 +9,11 @@ def call(Map config = [:]) {
     dir(servicePath) {
 
         sh '''
-            trivy fs . > trivyfs.txt
+            mkdir -p "$WORKSPACE/.trivy-cache"
+
+            trivy fs \
+                --cache-dir "$WORKSPACE/.trivy-cache" \
+                . > trivyfs.txt
         '''
     }
 }
