@@ -33,10 +33,15 @@ def call(Map config = [:]) {
         )
     ]) {
 
-        sh """
+        sh '''
+            git config credential.helper \
+                '!f() { echo "username=$GIT_USERNAME"; echo "password=$GIT_PASSWORD"; }; f'
+
             git push \
-                https://\\\${GIT_USERNAME}:\\\${GIT_PASSWORD}@${gitUrl} \
+                "https://github.com/jeet1418/AstroOps-helm.git" \
                 HEAD:main
-        """
+
+            git config --unset credential.helper
+        '''
     }
 }
