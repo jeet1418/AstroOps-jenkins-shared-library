@@ -3,6 +3,7 @@ def call(Map config = [:]) {
     if (!config.region) {
         error "Missing required parameter: region"
     }
+
     if (!config.registry) {
         error "Missing required parameter: registry"
     }
