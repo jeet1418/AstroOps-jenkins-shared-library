@@ -22,7 +22,8 @@ def call(Map config = [:]) {
                 sonar-scanner \
                     -Dsonar.projectName=${projectName} \
                     -Dsonar.projectKey=${projectKey} \
-                    -Dsonar.sources=.
+                    -Dsonar.sources=. \
+                    -Dsonar.userHome="\$WORKSPACE/.sonar"
             """
         }
     }
